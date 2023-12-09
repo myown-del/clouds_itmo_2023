@@ -4,9 +4,6 @@ on: [workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: ./clouds-lab3
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -15,20 +12,20 @@ jobs:
         run: docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good lab2
         
       - name: Create Artifacts directory
-        run: mkdir -p clouds-lab3/artifacts
+        run: mkdir artifacts
 
       - name: Show Docker Image Details
-        run: docker inspect clouds-lab3-app:latest > clouds-lab3/artifacts/docker_image_details.json
+        run: docker inspect clouds-lab3-app:latest > artifacts/docker_image_details.json
       
       - name: Debug - List Artifacts Directory
-        run: ls -R clouds-lab3/artifacts
+        run: ls -R artifacts
       
       - name: Print File contents
-        run: cat clouds-lab3/artifacts/docker_image_details.json
+        run: cat artifacts/docker_image_details.json
 
       - name: Upload Docker Image Details
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: clouds-lab3/artifacts/docker_image_details.json
+          path: artifacts/docker_image_details.json
       
