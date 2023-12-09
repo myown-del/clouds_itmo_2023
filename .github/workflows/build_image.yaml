@@ -9,13 +9,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker Image
-        run: |
-          docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good lab2
+        run: docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good lab2
+        
+      - name: Create Artifacts directory
+        run: mkdir -p $GITHUB_WORKSPACE/artifacts
 
       - name: Save build output
-        run: |
-          mkdir -p $GITHUB_WORKSPACE/artifacts
-          docker images > $GITHUB_WORKSPACE/artifacts/build_output.txt
+        run: docker images > $GITHUB_WORKSPACE/artifacts/build_output.txt
       
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
