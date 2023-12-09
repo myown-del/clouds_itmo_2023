@@ -10,7 +10,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good
+          docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good .
           docker images > build_output.txt
 
       - name: Save build output
