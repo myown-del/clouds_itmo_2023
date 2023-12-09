@@ -17,6 +17,9 @@ jobs:
       - name: Show Docker Image Details
         run: docker inspect clouds-lab3-app:latest > $GITHUB_WORKSPACE/artifacts/docker_image_details.json
       
+      - name: Debug - List Artifacts Directory
+        run: ls -R $GITHUB_WORKSPACE/artifacts
+      
       - name: Print File contents
         run: cat $GITHUB_WORKSPACE/artifacts/docker_image_details.json
 
@@ -24,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: $GITHUB_WORKSPACE/artifacts
+          path: $GITHUB_WORKSPACE/artifacts/docker_image_details.json
       
