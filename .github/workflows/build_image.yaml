@@ -14,10 +14,13 @@ jobs:
       - name: Create Artifacts directory
         run: mkdir -p $GITHUB_WORKSPACE/artifacts
 
-      - name: Save build output
-        run: docker images > $GITHUB_WORKSPACE/artifacts/build_output.txt
+      - name: Show Docker Image Details
+        run: docker inspect clouds-lab3-app:latest > $GITHUB_WORKSPACE/artifacts/docker_image_details.json
       
-      - name: Upload build artifacts
+      - name: Print File contents
+        run: cat $GITHUB_WORKSPACE/artifacts/docker_image_details.json
+
+      - name: Upload Docker Image Details
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
