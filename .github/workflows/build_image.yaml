@@ -1,0 +1,26 @@
+name: Build Docker Image
+
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: |
+          docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good
+          docker images > build_output.txt
+
+      - name: Save build output
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/artifacts
+          mv build_output.txt $GITHUB_WORKSPACE/artifacts/build_output.txt
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifacts@v3
+        with:
+          name: build-artifacts
+          path: $GITHUB_WORKSPACE/artifacts
+      
