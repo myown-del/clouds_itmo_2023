@@ -1,6 +1,6 @@
 name: Build Docker Image
 
-on: [workflow_dispatch]
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -14,11 +14,8 @@ jobs:
       - name: Create Artifacts directory
         run: mkdir artifacts
 
-      - name: Show Docker Image Details
+      - name: Save Docker Image Details
         run: docker inspect clouds-lab3-app:latest > artifacts/docker_image_details.json
-      
-      - name: Debug - List Artifacts Directory
-        run: ls -R artifacts
       
       - name: Print File contents
         run: cat artifacts/docker_image_details.json
