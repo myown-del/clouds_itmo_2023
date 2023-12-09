@@ -19,7 +19,7 @@ jobs:
           mv build_output.txt $GITHUB_WORKSPACE/artifacts/build_output.txt
       
       - name: Upload build artifacts
-        uses: actions/upload-artifacts@v3
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
           path: $GITHUB_WORKSPACE/artifacts
