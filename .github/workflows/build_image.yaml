@@ -11,12 +11,11 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good lab2
-          docker images > build_output.txt
 
       - name: Save build output
         run: |
           mkdir -p $GITHUB_WORKSPACE/artifacts
-          mv build_output.txt $GITHUB_WORKSPACE/artifacts/build_output.txt
+          docker images > $GITHUB_WORKSPACE/artifacts/build_output.txt
       
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
