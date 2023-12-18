@@ -1,6 +1,6 @@
 name: Build Docker Image
 
-on: [workflow_dispatch]
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -9,18 +9,20 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker Image
-        run: |
-          docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good
-          docker images > build_output.txt
+        run: docker build -t clouds-lab3-app:latest -f $GITHUB_WORKSPACE/lab2/Dockerfile.good lab2
+        
+      - name: Create Artifacts directory
+        run: mkdir artifacts
 
-      - name: Save build output
-        run: |
-          mkdir -p $GITHUB_WORKSPACE/artifacts
-          mv build_output.txt $GITHUB_WORKSPACE/artifacts/build_output.txt
+      - name: Save Docker Image Details
+        run: docker inspect clouds-lab3-app:latest > artifacts/docker_image_details.json
       
-      - name: Upload build artifacts
-        uses: actions/upload-artifacts@v3
+      - name: Print File contents
+        run: cat artifacts/docker_image_details.json
+
+      - name: Upload Docker Image Details
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: $GITHUB_WORKSPACE/artifacts
+          path: artifacts/docker_image_details.json
       
