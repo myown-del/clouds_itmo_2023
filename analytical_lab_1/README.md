@@ -83,13 +83,13 @@
 | -------------------------- | ------------------------------------- |
 | Amazon ElastiCache         | Yandex Managed Service for Redis      |
 | Amazon Elasticsearch       | Yandex Managed Service for Opensearch |
-| Amazon QLDB                | -                                  |
+| Amazon QLDB                | -                                     |
 | AWS Key Management Service | Yandex Key Management Service         |
 | AWS CloudHSM               | Yandex Key Management Service         |
 | Amazon Rekognition         | Yandex Vision                         |
 | Amazon Textract            | Yandex Vision OCR                     |
 | Amazon Lex                 | Yandex SpeechKit                      |
-| AWS CodePipeline           | -                                  |
+| AWS CodePipeline           | -                                     |
 | Amazon SES                 | Yandex Cloud Postbox                  |
 | Amazon SNS                 | Yandex Message Queue                  |
 
